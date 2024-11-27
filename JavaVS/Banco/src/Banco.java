@@ -1,115 +1,79 @@
-import java.util.*;
-
-/*Em um banco, para se cadastrar uma conta bancária, é necessário informar o número da conta, o nome do
-titular da conta, e o valor de depósito inicial que o titular depositou ao abrir a conta. Este valor de depósito
-inicial, entretanto, é opcional, ou seja: se o titular não tiver dinheiro a depositar no momento de abrir sua
-conta, o depósito inicial não será feito e o saldo inicial da conta será, naturalmente, zero.
-Importante: uma vez que uma conta bancária foi aberta, o número da conta nunca poderá ser alterado. Já
-o nome do titular pode ser alterado (pois uma pessoa pode mudar de nome por ocasião de casamento, por
-exemplo).
-Por fim, o saldo da conta não pode ser alterado livremente. É preciso haver um mecanismo para proteger
-isso. O saldo só aumenta por meio de depósitos, e só diminui por meio de saques. Para cada saque
-realizado, o banco cobra uma taxa de $ 5.00. Nota: a conta pode ficar com saldo negativo se o saldo não for
-suficiente para realizar o saque e/ou pagar a taxa.
-Você deve fazer um programa que realize o cadastro de uma conta, dando opção para que seja ou não
-informado o valor de depósito inicial. Em seguida, realizar um depósito e depois um saque, sempre
-mostrando os dados da conta após cada operação. */
-
+import java.util.Scanner;
 
 public class Banco {
-    public static void main(String[] args)  {
-      
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        
         Info info;
 
-        System.out.println ("Insira o número da conta:");
+        System.out.println("Insira o número da conta:");
         int numConta = sc.nextInt();
+        sc.nextLine(); 
 
-        System.out.print("Insira seu nome");
+        System.out.print("Insira seu nome: ");
         String nome = sc.nextLine();
 
-        System.out.println("Deseja depositar um valor inicial?(s/n)");
+        System.out.println("Deseja depositar um valor inicial? (s/n)");
         char SN = sc.next().charAt(0);
 
-        if (SN == 's'){
+        if (SN == 's') {
             System.out.println("Insira quanto quer depositar inicialmente:");
-            double balanco = sc.nextDouble(); 
+            double balanco = sc.nextDouble();
             info = new Info(numConta, nome, balanco);
-        } 
-        
-        else {
-            info = new Info(numConta, nome);}
+        } else {
+            info = new Info(numConta, nome);
+        }
 
-            int decisao = 0;
-            
-            
-            while (decisao != 3){
-                
-                
+        int decisao = 0;
 
-                System.out.println("Escolha uma ação:");
-                System.out.println("1) Depósito");
-                System.out.println("2) Saque");
-                System.out.println("3) Sair");
+        while (decisao != 3) {
+            System.out.println("\nEscolha uma ação:");
+            System.out.println("1) Depósito");
+            System.out.println("2) Saque (Taxa de R$ 5,00)");
+            System.out.println("3) Sair");
 
+            System.out.print("Digite sua escolha: ");
+            if (sc.hasNextInt()) {
                 decisao = sc.nextInt();
+            } else {
+                System.out.println("Entrada inválida, insira um número entre 1 e 3.");
+                sc.next(); 
+                continue;
+            }
 
-                switch (decisao){
-
-                    case 1: 
+            switch (decisao) {
+                case 1:
                     System.out.println("Insira quanto deseja depositar:");
                     double aDepositar = sc.nextDouble();
                     info.Deposito(aDepositar);
-                    System.out.println("Informações da conta:");
-                    System.out.println("Numero da conta" + info.getNumConta() + "Nome do cliente" + info.getNome() + "Balanço" + info.getBalanco());
+                    exibirInformacoes(info);
                     break;
 
-                    case 2:
+                case 2:
                     System.out.println("Insira quanto deseja sacar:");
                     double aSacar = sc.nextDouble();
                     info.Saque(aSacar);
-                    System.out.println("Informações da conta:");
-                    System.out.println("Numero da conta" + info.getNumConta() + "Nome do cliente" + info.getNome() + "Balanço" + info.getBalanco());
+                    exibirInformacoes(info);
                     break;
 
-                    case 3:
-                    System.out.println("Obrigado por usar o nosso sistema!");
-                    System.out.println("Informações da conta:");
-                    System.out.println("Numero da conta" + info.getNumConta() + "Nome do cliente" + info.getNome() + "Balanço" + info.getBalanco());
+                case 3:
+                    System.out.println("\nObrigado por usar o nosso sistema!");
+                    exibirInformacoes(info);
                     break;
-                
 
-
-
-
-
-
-
-
-                }
-               
-
-
-
-
-
-
+                default:
+                    System.out.println("Opção inválida.");
             }
-
-
-
-
-
-
-
-
-
-
-
-
+        }
 
         sc.close();
+    }
+
+    
+    private static void exibirInformacoes(Info info) {
+        System.out.println("\nInformações da conta:");
+        System.out.println("Número da conta: " + info.getNumConta());
+        System.out.println("Nome do cliente: " + info.getNome());
+        System.out.println("Saldo atual: R$" + info.getBalanco());
     }
 }

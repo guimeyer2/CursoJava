@@ -14,67 +14,55 @@ informado o valor de depósito inicial. Em seguida, realizar um depósito e depo
 mostrando os dados da conta após cada operação. */
 
 public class Info {
-    
-    public int numConta;
-    public String nome;
-    public double balanco;
 
+    private int numConta; 
+    private String nome;  
+    private double balanco; 
 
-    public int getNumConta() {
-        return numConta;
-    }
-    public String getNome() {
-        return nome;
-    }
-    public void setNumConta(int numConta) {
-        this.numConta = numConta;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public double getBalanco() {
-        return balanco;
-    }
-    public void setBalanco(int balanco) {
-        this.balanco = balanco;
-    }
-
-    public Info(int numConta, String nome) {
-        this.numConta = numConta;
-        this.nome = nome;
-    }
+   
     public Info(int numConta, String nome, double balanco) {
         this.numConta = numConta;
         this.nome = nome;
         this.balanco = balanco;
     }
 
-
+    
+    public Info(int numConta, String nome) {
+        this.numConta = numConta;
+        this.nome = nome;
+        this.balanco = 0.0;
+    }
 
     
+    public int getNumConta() {
+        return numConta;
+    }
 
+    public String getNome() {
+        return nome;
+    }
 
-   public double Deposito(double aDepositar){
-    balanco =+ aDepositar;
-    return balanco;
-   }
-
-
-   public double Saque(double aSacar){
-    balanco =+ aSacar;
-    return balanco;
-   }
-
+    public double getBalanco() {
+        return balanco;
+    }
 
     
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     
+    public void Deposito(double aDepositar) {
+      
+            balanco += aDepositar;}
+       
 
-
-
-
-
-
-
-
-
+    public void Saque(double aSacar) {
+        double taxa = 5.0;
+        if (aSacar + taxa <= balanco) {
+            balanco -= (aSacar + taxa); 
+        } else {
+            System.out.println("Erro: Saldo insuficiente para realizar o saque.");
+        }
+    }
 }
