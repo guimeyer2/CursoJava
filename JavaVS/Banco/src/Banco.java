@@ -52,7 +52,7 @@ public class Banco {
                 case 2:
                     System.out.println("Insira quanto deseja sacar:");
                     double aSacar = sc.nextDouble();
-                    info.Saque(aSacar);
+                    info.Saque(aSacar);  
                     exibirInformacoes(info);
                     break;
 
