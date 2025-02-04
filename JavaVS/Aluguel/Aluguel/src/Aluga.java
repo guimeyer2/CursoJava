@@ -3,20 +3,20 @@
 
 public class Aluga {
 
-    private String name;
+    private String nome;
     private String email;
    
     public Aluga(String name, String email) {
-    this.name = name;
+    this.nome = name;
     this.email = email;
     }
 
     
-    public String getName() {
-    return name;
+    public String getNome() {
+    return nome;
     }
-    public void setName(String name) {
-    this.name = name;
+    public void setNome(String name) {
+    this.nome = name;
     }
     public String getEmail() {
     return email;
@@ -25,6 +25,6 @@ public class Aluga {
     this.email = email;
     }
     public String toString() {
-    return name + ", " + email;
+    return nome + ", " + email;
     }
     }
