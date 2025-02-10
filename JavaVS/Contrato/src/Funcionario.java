@@ -13,14 +13,14 @@ public class Funcionario {
 	public Funcionario() {
 	}
 
-	public Funcionario(String nome, Nivel nivel, Double salario, Departamento Departamento) {
+	public Funcionario(String nome, Nivel nivel, Double salario, Departamento departamento) {
 		this.nome = nome;
 		this.nivel = nivel;
 		this.salario = salario;
-		this.Departamento = Departamento;
+		this.Departamento = departamento;
 	}
 
-	public String getnome() {
+	public String getNome() {
 		return nome;
 	}
 
@@ -36,7 +36,7 @@ public class Funcionario {
 		this.nivel = nivel;
 	}
 
-	public Double getsalario() {
+	public Double getSalario() {
 		return salario;
 	}
 
@@ -70,7 +70,7 @@ public class Funcionario {
         for (ContratoHr c : contratos){
             cal.setTime(c.getDate());
             int c_ano = cal.get(Calendar.YEAR);
-            int c_mes = cal.get(Calendar.MONTH);
+            int c_mes = cal.get(Calendar.MONTH) + 1;
             if (ano == c_ano && mês == c_mes){
                 soma += c.valorTotal();
             }
