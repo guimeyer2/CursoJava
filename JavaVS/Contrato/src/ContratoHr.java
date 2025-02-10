@@ -49,6 +49,10 @@ public class ContratoHr {
         this.horas = horas;
     }
 
+
+    public double valorTotal(){
+        return valorPorHora * horas;
+    }
     
     
 
