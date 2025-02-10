@@ -25,7 +25,7 @@ public class Programa {
   func.increaseSalary(percentage); 
    
   System.out.println(); 
-  System.out.println("Dados atualizados" + func); 
+  System.out.println("Dados atualizados " + func); 
   sc.close(); 
  }  
 } 
