@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Funcionario {
@@ -64,13 +65,18 @@ public class Funcionario {
 	}
 
     public double recebimento(int ano, int mês){
-        
-        
+        double soma = salario;
+        Calendar cal = Calendar.getInstance();
+        for (ContratoHr c : contratos){
+            cal.setTime(c.getDate());
+            int c_ano = cal.get(Calendar.YEAR);
+            int c_mes = cal.get(Calendar.MONTH);
+            if (ano == c_ano && mês == c_mes){
+                soma += c.valorTotal();
+            }
+        }
 
-
-
-
-        return
+        return soma;
     }
 
 
